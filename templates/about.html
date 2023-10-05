@@ -1,0 +1,24 @@
+<!-- templates/about.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Lawrence Laugesen{% endblock title %}
+
+{% block content %}
+  <div class='jumbotron'>
+    <h1 class='display-4'>About Me</h1>
+    <p class='lead'>Lawrence Laugesen</p>
+    <div class="container">
+      <div class="image">
+        <img src="{% static 'images/MY_PICTURE.JPG' %}" heigth=200 width=200 style="float: left; margin: 15px">
+      </div>
+      <div class="text">
+      <p class='lead'>
+      Adaptable, results-driven Systems Architect respected for proficiency in Unix environments as well as strong practical background in automation and data analysis. Skilled in applying software development practices in crafting solutions for large scale infrastructure.<br><br>
+Proficient in designing platform agnostic solutions for data extraction, manipulation, and display. Proven track record of providing integral internal and client-side support through meticulous troubleshooting and innovative solutions. Cloud certified self-starter known for going the extra mile to maintain system integrity and provide documentation and support for collaborators. Industry-relevant accreditations include multiple AWS, Python, and Terraform certifications.<br><br>
+I have been married to my wife Dany since 2017. We have two sons, Paul and Niko.
+      </p>
+      </div>
+      <a href='www.linkedin.com/in/lawrence-c-l'>LinkedIn Profile</a> | <a href='https://github.com/laugesen11?tab=repositories'>GitHub Repos</a>
+  </div>
+{% endblock content %}

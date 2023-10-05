@@ -1,0 +1,12 @@
+<!-- work_experience_delete.html -->
+{% extends 'base.html' %}
+
+{% block title %}Work Experience{% endblock title %}
+
+{% block content %}
+  <h2>Delete Work Experience</h2>
+  <form action="" method="post">{% csrf_token %}
+    <p>Are your sure you want to delete "{{ work_experience.company }}-{{ work_experience.title }}"?</p>
+    <button class='btn btn-danger m1-2' type='submit'>Confirm</button>
+  </form>
+{% endblock content %}

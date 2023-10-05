@@ -1,0 +1,39 @@
+<!-- work_experience_list.html -->
+{% extends 'base.html' %}
+
+{% block title %}Skillset{% endblock title %}
+
+{% block content %}
+  <h1 class='display-4'>Skillset</h1><br><br>
+  {% for skillset in skillsets %}
+    <div class='card'>
+      <div class='card-header'>
+          <span class='font-weight-bold'>{{ skillset.skill }}</span><br>
+          <span class='text-muted' style='float: right'>{{ skillset.years }} Years Experience</span>
+      </div>
+      <div class='card-body'>
+        {% if skillset.picture %} 
+          <div class='container'>
+            <div class='image'>
+              <img src="{{ skillset.picture.url }}" height='50' width='50' style="float: left; margin: 15px"> 
+            </div>
+            <div class='text'>
+              <p>{{ skillset.details|linebreaks }}</p>
+            </div>
+          </div>
+        {% else %}
+          <p>{{ skillset.details|linebreaks }}</p>
+        {% endif %}
+      </div>
+      {% if user.is_authenticated %}
+        <div class='card-footer'>
+          <a href="{% url 'update_skillset' skillset.pk %}">Edit</a> | <a href="{% url 'delete_skillset' skillset.pk %}">Delete</a>
+        </div>
+      {% endif %}
+    </div>
+    <br />
+  {% endfor %}
+  {% if user.is_authenticated %}
+  <a href="{% url 'create_skillset' %}">Add skillset</a>
+  {% endif %}
+{% endblock content %} 

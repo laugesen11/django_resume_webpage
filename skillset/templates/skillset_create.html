@@ -1,0 +1,12 @@
+<!-- work_experience_create.html -->
+{% extends 'base.html' %}
+
+{% block title %}Skillset{% endblock title %}
+
+{% block content %}
+  <h1>New Skillset</h1>
+  <form class="form-horizonal" name="uploadform" enctype="multipart/form-data" method="post">{% csrf_token %}
+    {{ form.as_p }}
+      <button class='btn btn-success ml-2' type='submit'>Save</button>
+  </form>
+{% endblock content %}

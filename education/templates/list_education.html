@@ -1,0 +1,39 @@
+<!-- list_education.html -->
+{% extends 'base.html' %}
+
+{% block title %}Education / Certifications{% endblock title %}
+
+{% block content %}
+  <h1 class='display-4'>Education / Certifications Completed</h1><br><br>
+  {% for education in educations %}
+    <div class='card'>
+      <div class='card-header'>
+        {% if education.picture %} 
+          <div class='container'>
+            <div class='image'>
+              <img src="{{ education.picture.url }}" height='50' width='50' style="float: left; margin: 15px"> 
+            </div>
+            <div class='text'>
+              <span class='font-weight-bold'>{{ education.achievement }}{% if education.institution %} - {{ education.institution }}{% endif %}</span><br>
+              <span class='text-muted' style='float: right'>Achieved: {{ education.date_achieved|date:"m/d/Y" }}</span><br>
+              {% if education.valid_until %}<span class='text-muted' style='float: right'>Valid through: {{ education.valid_until|date:"m/d/Y" }}</span>{% endif %}
+            </div>
+          </div>
+        {% else %}
+          <span class='font-weight-bold'>{{ education.achievement }}{% if education.institution %} - {{ education.institution }}{% endif %}</span><br>
+          <span class='text-muted' style='float: right'>{{ education.date_achieved|date:"m/d/Y" }}</span> 
+          {% if education.valid_until %}<span class='text-muted' style='float: right'>Valid through: {{ education.valid_until|date:"m/d/Y" }}</span>{% endif %}
+        {% endif %}
+      </div>
+      {% if user.is_authenticated %}
+        <div class='card-footer'>
+          <a href="{% url 'update_education' education.pk %}">Edit</a> | <a href="{% url 'delete_education' education.pk %}">Delete</a>
+        </div>
+      {% endif %}
+    </div>
+    <br />
+  {% endfor %}
+  {% if user.is_authenticated %}
+  <a href="{% url 'create_education' %}">Add education</a>
+  {% endif %}
+{% endblock content %} 

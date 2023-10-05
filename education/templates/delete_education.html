@@ -1,0 +1,12 @@
+<!-- delete_education.html -->
+{% extends 'base.html' %}
+
+{% block title %}Education / Certifications{% endblock title %}
+
+{% block content %}
+  <h2>Delete education/certification</h2>
+  <form action="" method="post">{% csrf_token %}
+    <p>Are your sure you want to delete "{{ education.achievement }}"?</p>
+    <button class='btn btn-danger m1-2' type='submit'>Confirm</button>
+  </form>
+{% endblock content %}

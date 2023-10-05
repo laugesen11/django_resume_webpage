@@ -1,0 +1,49 @@
+<!-- work_experience_list.html -->
+{% extends 'base.html' %}
+
+{% block title %}Portfolio{% endblock title %}
+
+{% block content %}
+  <h1 class='display-4'>Coding Portfolio</h1><br><br>
+  {% for display in displays %}
+    <div class='card'>
+      <div class='card-header'>
+          <span class='font-weight-bold'>{{ display.title }}</span><br>
+      </div>
+      <div class='card-body'>
+        {% if display.picture %} 
+          <div class='container'>
+            <div class='image'>
+              <img src="{{ display.picture.url }}" height='100' width='100' style="float: left; margin: 15px"> 
+            </div>
+            <div class='text'>
+              <p>{{ display.details|linebreaks }}</p>
+            </div>
+          </div>
+        {% else %}
+          <p>{{ display.details|linebreaks }}</p>
+        {% endif %}
+      </div>
+      {% if display.codelinks.all %}
+        <div class='card-footer'>
+        {% for code_link in display.codelinks.all %}
+            <li><a href="{{ code_link.link_url }}">{{ code_link.info }}</a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'update_code_link' code_link.pk %}">Edit</a> | <a href="{% url 'delete_code_link' code_link.pk %}">Delete</a>
+            {% endif %}
+            </li>
+        {% endfor %}
+        </dv>
+      {% endif %}
+      {% if user.is_authenticated %}
+        <div class='card-footer'>
+          <a href="{% url 'update_display' display.pk %}">Edit</a> | <a href="{% url 'delete_display' display.pk %}">Delete</a> | <a href="{% url 'create_code_link' %}">Add code link</a>
+        </div>
+      {% endif %}
+    </div>
+    <br />
+  {% endfor %}
+  {% if user.is_authenticated %}
+  <a href="{% url 'create_display' %}">Add portfolio item</a>
+  {% endif %}
+{% endblock content %} 

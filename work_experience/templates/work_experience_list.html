@@ -1,0 +1,40 @@
+<!-- work_experience_list.html -->
+{% extends 'base.html' %}
+
+{% block title %}Work Experience{% endblock title %}
+
+{% block content %}
+  <h1 class='display-4'>Professional Work Experience</h1><br><br>
+  {% for work_experience in work_experiences %}
+    <div class='card'>
+      <div class='card-header'>
+          <span class='font-weight-bold'>{{ work_experience.company }} - {{ work_experience.team_name }}</span><br>
+          <span class='text-muted'>{{ work_experience.job_title }}</span>
+          <span class='text-muted' style='float: right'>{{ work_experience.start_date|date:"m/d/Y" }} to {% if work_experience.end_date %}{{ work_experience.end_date|date:"m/d/Y" }}{% else %} Present{% endif %}</span>
+      </div>
+      <div class='card-body'>
+        {% if work_experience.picture %} 
+          <div class='container'>
+            <div class='image'>
+              <img src="{{ work_experience.picture.url }}" height='50' width='50' style="float: left; margin: 15px"> 
+            </div>
+            <div class='text'>
+              <p>{{ work_experience.work|linebreaks }}</p>
+            </div>
+          </div>
+        {% else %}
+          <p>{{ work_experience.work|linebreaks }}</p>
+        {% endif %}
+      </div>
+      {% if user.is_authenticated %}
+        <div class='card-footer'>
+          <a href="{% url 'update_work_experience' work_experience.pk %}">Edit</a> | <a href="{% url 'delete_work_experience' work_experience.pk %}">Delete</a>
+        </div>
+      {% endif %}
+    </div>
+    <br />
+  {% endfor %}
+  {% if user.is_authenticated %}
+  <a href="{% url 'create_work_experience' %}">Add experience</a>
+  {% endif %}
+{% endblock content %} 
