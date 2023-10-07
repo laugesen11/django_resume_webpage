@@ -18,6 +18,12 @@ class Education(models.Model):
     # Valid until (If applicable)
     valid_until = models.DateField(null=True, blank=True)
 
+    # Optional Link URL 
+    link_url = models.URLField(max_length=250, null=True, blank=True)
+
+    # Link Identifier 
+    link_details = models.CharField(max_length=200, null=True, blank=True, default='Link')
+
     def __str__(self):
         return f"{achievement}"
 

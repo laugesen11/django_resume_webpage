@@ -20,14 +20,14 @@ class CreateEducationView(SetUpMixin, CreateView):
     template_name = 'create_education.html'
 
     # The fields available to set in creation
-    fields = ['picture', 'achievement', 'institution', 'date_achieved', 'valid_until']
+    fields = ['picture', 'achievement', 'institution', 'date_achieved', 'valid_until', 'link_url', 'link_details']
 
 class UpdateEducationView(SetUpMixin, UpdateView):
     # The template we use in this view
     template_name = 'update_education.html'
 
     # The fields available to update
-    fields = ['picture', 'achievement', 'institution', 'date_achieved', 'valid_until']
+    fields = ['picture', 'achievement', 'institution', 'date_achieved', 'valid_until', 'link_url', 'link_details']
    
 class DeleteEducationView(SetUpMixin, DeleteView):
     # The template we use in this view

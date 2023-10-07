@@ -15,6 +15,11 @@
             </div>
             <div class='text'>
               <span class='font-weight-bold'>{{ education.achievement }}{% if education.institution %} - {{ education.institution }}{% endif %}</span><br>
+              {% if education.link_url %}
+                <span class='font-weight-bold'>
+                  <a href="{{ education.link_url }}">{% if education.link_details  %}{{ education.link_details }}{% else %}Link{% endif %} </a>
+                </span><br>
+              {% endif %}
               <span class='text-muted' style='float: right'>Achieved: {{ education.date_achieved|date:"m/d/Y" }}</span><br>
               {% if education.valid_until %}<span class='text-muted' style='float: right'>Valid through: {{ education.valid_until|date:"m/d/Y" }}</span>{% endif %}
             </div>
